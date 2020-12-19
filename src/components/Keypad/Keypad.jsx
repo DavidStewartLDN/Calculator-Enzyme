@@ -10,9 +10,23 @@ const Keypad = ({
   setOperator,
   updateDisplay,
  }) => {
-    const numbersKeys = numbers.map(number => <p key={number}>{number}</p>)
+    const numbersKeys = numbers.map(number => (
+      <Key
+        key={number}
+        keyAction={updateDisplay}
+        keyType='number-key'
+        keyValue={number}
+      />)
+    )
 
-    const operatorsKeys = operators.map(operator => <p key={operator}>{operator}</p>)
+    const operatorsKeys = operators.map(operator => (
+      <Key 
+        key={operator}
+        keyAction={updateDisplay}
+        keyType='operator-key'
+        keyValue={operator}
+      />)
+    )
  
  return(
     <div className='keypad-container'>
@@ -22,11 +36,13 @@ const Keypad = ({
       <div className='operators-container'>
         {operatorsKeys}
       </div>
-      <Key 
-        keyAction={callOperator}
-        keyType=""
-        keyValue=""
-      />
+      <div className='submit-container'>
+        <Key
+          keyAction={callOperator}
+          keyType='submit-key'
+          keyValue='='
+        />
+      </div>
     </div>
   );
 }
